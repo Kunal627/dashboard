@@ -1,0 +1,40 @@
+/* */
+.css-header-card {
+    height: 54px;
+    border-top: 8px solid #222222;
+    border-bottom: 4px solid #222222;
+    border-left: 8px solid #222222;
+    border-right: 8px solid #222222;
+}
+.css-dash-head {
+    margin-top: -18px;
+    padding-bottom: 0px;
+}
+
+.css-drp-down-card {
+    margin-top: -18px;
+    border-top: 4px solid #222222;
+    border-bottom: 4px solid #222222;
+    border-left: 8px solid #222222;
+    border-right: 8px solid #222222;
+}
+
+
+
+.css-drp-cntry, .css-drp-cp ,.css-drp-fy, .css-drp-regn {
+    overflow-y: scroll;
+    max-height: 40px;
+    color: black;
+}
+
+.css-chart1-card {
+    margin-top: -15px;
+    border-top: 4px solid #222222;
+    border-bottom: 4px solid #222222;
+    border-left: 8px solid #222222;
+    border-right: 8px solid #222222;
+}
+
+.css-scatter-geo-fig {
+    height: 40%;
+}
