@@ -88,7 +88,7 @@ app.layout = dhc.Div([
                 ], width={'size':3, "offset": 0}),
 
                 dbc.Col([
-                    dcc.Dropdown(id='id-drp-cp', multi=True, value=["MDT"], searchable=True,
+                    dcc.Dropdown(id='id-drp-cp', multi=True, value=["TEST"], searchable=True,
                     options=[{"label" : cp, "value": cp} for cp in data.STOCK_ABBREV.unique()],
                     className="css-drp-cp")
                 ], width={'size':3, "offset": 0}),
