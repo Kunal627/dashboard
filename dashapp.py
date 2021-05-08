@@ -9,7 +9,7 @@ from PIL import Image
 import numpy as np
 import plotly.graph_objects as go
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY], meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}])
 
 img = Image.open('./images/nightsky.JPG')
 data = pd.read_csv('./data/output/finaldatav01.csv')
@@ -57,6 +57,17 @@ def sankeyplot(data, srccol,destcol,valcol,title):
     return fig
 
 
+def sunburstplot(data):
+    data["REV_CALC"] = data["REV_CALC"].div(100000000).round(3)
+    data = data.groupby(["FY", "STOCK_ABBREV", "COUNTRY_TRNS" ]).agg({"REV_CALC": "sum"}).reset_index()
+    color = px.colors.sequential
+    fig = px.sunburst(data, path=['FY', 'STOCK_ABBREV','COUNTRY_TRNS'], 
+                  values='REV_CALC', color='STOCK_ABBREV', hover_data=['REV_CALC'], title="Global revenue for financial year (in B $)",
+                  color_continuous_scale=color, range_color =[0,255])
+    fig.update_layout(title_x=0.5,template="plotly_dark")
+
+    return fig
+
 
 app.layout = dhc.Div([
     dbc.Card([
@@ -88,7 +99,7 @@ app.layout = dhc.Div([
                 ], width={'size':3, "offset": 0}),
 
                 dbc.Col([
-                    dcc.Dropdown(id='id-drp-cp', multi=True, value=["TEST"], searchable=True,
+                    dcc.Dropdown(id='id-drp-cp', multi=True, value=["JNJ"], searchable=True,
                     options=[{"label" : cp, "value": cp} for cp in data.STOCK_ABBREV.unique()],
                     className="css-drp-cp")
                 ], width={'size':3, "offset": 0}),
@@ -126,7 +137,11 @@ app.layout = dhc.Div([
 
                 dbc.Col([
                     dcc.Graph(id="sank-chart", config={"displayModeBar": False}, className="css-sankey-fig")
-                ], width={'size':6, "offset": 0 })
+                ], width={'size':5, "offset": 0 }),
+
+                dbc.Col([
+                    dcc.Graph(id="sunbrst-chart", config={"displayModeBar": False}, className="css-sunbrst-fig")
+                ], width={'size':3.5, "offset": 0 })
 
             ])
 
@@ -170,6 +185,18 @@ def update_sankey(fy, tic, cntry):
     fig_sankey = sankeyplot(filtered_data,srccol,destcol,valcol,title)
 
     return fig_sankey
+
+
+@app.callback(
+    Output("sunbrst-chart", 'figure'),
+    [
+        Input("id-drp-fy", "value")
+    ],
+)
+def update_sankey(fy):
+    dataset = data
+    fig = sunburstplot(dataset)
+    return fig
 
 
 

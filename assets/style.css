@@ -28,11 +28,12 @@
 }
 
 .css-chart1-card {
-    margin-top: -15px;
+    margin-top: -18px;
     border-top: 4px solid #222222;
     border-bottom: 4px solid #222222;
     border-left: 8px solid #222222;
     border-right: 8px solid #222222;
+    height: 410px;
 }
 
 .css-scatter-geo-fig {
