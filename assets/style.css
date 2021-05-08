@@ -11,12 +11,17 @@
     padding-bottom: 0px;
 }
 
+.css-row-dd-head{
+    margin-top: -15px;
+}
+
 .css-drp-down-card {
     margin-top: -18px;
     border-top: 4px solid #222222;
     border-bottom: 4px solid #222222;
     border-left: 8px solid #222222;
     border-right: 8px solid #222222;
+    height: 85px;
 }
 
 
@@ -27,15 +32,90 @@
     color: black;
 }
 
-.css-chart1-card {
+
+.css-gscat-card {
     margin-top: -18px;
+    margin-left: 0px;
     border-top: 4px solid #222222;
     border-bottom: 4px solid #222222;
     border-left: 8px solid #222222;
     border-right: 8px solid #222222;
-    height: 410px;
+    height: 400px;
+    width: 570px;
+
+}
+
+.css-sankey-card {
+    margin-top: -18px;
+    margin-left: -100px;
+    border-top: 4px solid #222222;
+    border-bottom: 4px solid #222222;
+    border-left: 8px solid #222222;
+    border-right: 8px solid #222222;
+    height: 400px;
+    width: 655px;
+
+}
+
+.css-sunbrst-card{
+    margin-top: -18px;
+    margin-left: -100px;
+    border-top: 4px solid #222222;
+    border-bottom: 4px solid #222222;
+    border-left: 8px solid #222222;
+    border-right: 8px solid #222222;
+    margin-right: 0px;
+    height: 755px;
 }
 
 .css-scatter-geo-fig {
-    height: 40%;
+
+    margin-left: -10px;
+    margin-top: -10px;
+    margin-right: -10px;
+    margin-bottom: -10px;
+
+}
+
+.css-sankey-fig {
+
+    margin-left: -10px;
+    margin-top: -10px;
+    margin-right: -10px;
+    margin-bottom: -10px;   
+}
+
+.css-sunbrst-fig {
+    margin-left: -10px;
+    margin-top: -10px;
+    margin-right: -10px;
+    margin-bottom: -10px;
+}
+
+.css-barplot-card {
+    margin-top: -374px;
+    margin-left: 7px;
+    width: 705px;
+    height: 350px;
+}
+
+.css-barplot-fig{
+
+    margin-left: -10px;
+    margin-top: -10px;
+    margin-right: -10px;
+    margin-bottom: -10px;  
+}
+.css-scatter-card{
+    margin-left: -95px;  
+    width: 479px; 
+    margin-top: -374px;
+    height: 350px;
+}
+
+.css-scatter-fig {
+    margin-left: -10px;
+    margin-top: -10px;
+    margin-right: -10px;
+    margin-bottom: -10px;    
 }
