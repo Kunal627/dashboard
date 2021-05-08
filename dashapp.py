@@ -60,7 +60,7 @@ def sankeyplot(data, srccol,destcol,valcol,title):
 def sunburstplot(data):
 
     fig = px.sunburst(data, path=['FY', 'STOCK_ABBREV', 'CONTINENT','COUNTRY_TRNS'], 
-                  values='REV_CALC', color='UNITS', hover_data=['REV_CALC'], title="Global revenue for financial year (in B $)",
+                  values='REV_CALC', color='UNITS', hover_data=['UNITS'], title="Global revenue for financial year (in B $)",
                   color_continuous_scale='ylgnbu',
                   color_continuous_midpoint=np.average(data['UNITS'], weights=data['REV_CALC']))
     fig.update_layout(title_x=0.5, width=682, height=730,template="plotly_dark")
@@ -231,7 +231,8 @@ def update_sankey(fy, tic, cntry):
 def update_sunbrst(fy):
     dataset = pd.read_csv('./data/output/finaldatav01.csv')
     dataset.drop(columns=['COMPANY', 'PRODUCT_ID', 'PRODUCT_SUBTYPE', 'UNIT_PRICE','Unnamed: 9', 'Unnamed: 10','REVENUE','ALPHA3ISO','COUNTRY'], inplace=True)
-    dataset["REV_CALC"] = dataset["REV_CALC"].div(1000000000).round(3)
+    dataset["REV_CALC"] = dataset["REV_CALC"].div(1000000000)
+    dataset["REV_CALC"] = dataset["REV_CALC"].round(3)
     fig_snbrst = sunburstplot(dataset)
     return fig_snbrst
 
@@ -244,7 +245,8 @@ def update_sunbrst(fy):
 def update_barplot(cntry):
     dataset = pd.read_csv('./data/output/finaldatav01.csv')
     filtered_data = dataset[dataset["COUNTRY_TRNS"].isin(cntry)]
-    filtered_data["REV_CALC"] = filtered_data["REV_CALC"].div(1000000000).round(3)
+    filtered_data["REV_CALC"] = filtered_data["REV_CALC"].div(1000000000)
+    filtered_data["REV_CALC"] = filtered_data["REV_CALC"].round(3)
     fig_bar = barplotfn(filtered_data)
     return fig_bar
 
