@@ -1,8 +1,8 @@
 /* */
 .css-header-card {
-    height: 54px;
-    border-top: 8px solid #222222;
-    border-bottom: 4px solid #222222;
+    height: 28px;
+    border-top: 0px solid #222222;
+    border-bottom: 2px solid #222222;
     border-left: 8px solid #222222;
     border-right: 8px solid #222222;
 }
@@ -15,13 +15,16 @@
     margin-top: -15px;
 }
 
+.css-font {
+    font-size: 10px;
+}
 .css-drp-down-card {
-    margin-top: -18px;
-    border-top: 4px solid #222222;
-    border-bottom: 4px solid #222222;
+    margin-top: -20px;
+    border-top: 2px solid #222222;
+    border-bottom: 2px solid #222222;
     border-left: 8px solid #222222;
     border-right: 8px solid #222222;
-    height: 85px;
+    height: 72px;
 }
 
 
@@ -36,23 +39,23 @@
 .css-gscat-card {
     margin-top: -18px;
     margin-left: 0px;
-    border-top: 4px solid #222222;
-    border-bottom: 4px solid #222222;
+    border-top: 2px solid #222222;
+    border-bottom: 2px solid #222222;
     border-left: 8px solid #222222;
     border-right: 8px solid #222222;
-    height: 400px;
-    width: 570px;
+    height: 350px;
+    width: 500px;
 
 }
 
 .css-sankey-card {
     margin-top: -18px;
     margin-left: -100px;
-    border-top: 4px solid #222222;
-    border-bottom: 4px solid #222222;
+    border-top: 2px solid #222222;
+    border-bottom: 2px solid #222222;
     border-left: 8px solid #222222;
     border-right: 8px solid #222222;
-    height: 400px;
+    height: 350px;
     width: 655px;
 
 }
@@ -60,12 +63,12 @@
 .css-sunbrst-card{
     margin-top: -18px;
     margin-left: -100px;
-    border-top: 4px solid #222222;
-    border-bottom: 4px solid #222222;
+    border-top: 2px solid #222222;
+    border-bottom: 2px solid #222222;
     border-left: 8px solid #222222;
     border-right: 8px solid #222222;
     margin-right: 0px;
-    height: 755px;
+    height: 620px;
 }
 
 .css-scatter-geo-fig {
@@ -93,10 +96,10 @@
 }
 
 .css-barplot-card {
-    margin-top: -374px;
+    margin-top: -290px;
     margin-left: 7px;
-    width: 705px;
-    height: 350px;
+    width: 548px;
+    height: 270px;
 }
 
 .css-barplot-fig{
@@ -106,11 +109,12 @@
     margin-right: -10px;
     margin-bottom: -10px;  
 }
+
 .css-scatter-card{
-    margin-left: -95px;  
-    width: 479px; 
-    margin-top: -374px;
-    height: 350px;
+    margin-left: 40px;  
+    width: 378px; 
+    margin-top: -290px;
+    height: 270px;
 }
 
 .css-scatter-fig {

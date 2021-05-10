@@ -20,7 +20,7 @@ def scattergeo(data):
 
     fig = px.scatter_geo(data, locations="ALPHA3ISO", locationmode="ISO-3",
                         color="STOCK_ABBREV",hover_name="COMPANY", size="REVENUE",color_continuous_scale=px.colors.diverging, 
-                        animation_frame="FY",projection="orthographic",size_max=40, title="Global Revenue",width=525, height=375
+                        animation_frame="FY",projection="orthographic",size_max=40, title="Global Revenue",width=390, height=325
                         )
     
     #fig.add_layout_image(dict(source=img))
@@ -53,7 +53,7 @@ def sankeyplot(data, srccol,destcol,valcol,title):
           color = node_colors
     ))])
 
-    fig.update_layout(title_text=title, title_x=0.5, font_size=10, template="plotly_dark", width=620, height=375)
+    fig.update_layout(title_text=title, title_x=0.5, font_size=10, template="plotly_dark", width=490, height=325)
     return fig
 
 
@@ -63,20 +63,20 @@ def sunburstplot(data):
                   values='REV_CALC', color='UNITS', hover_data=['UNITS'], title="Global revenue for financial year (in B $)",
                   color_continuous_scale='ylgnbu',
                   color_continuous_midpoint=np.average(data['UNITS'], weights=data['REV_CALC']))
-    fig.update_layout(title_x=0.5, width=682, height=730,template="plotly_dark")
+    fig.update_layout(title_x=0.5, width=550, height=600)
     #print(fig)
     return fig
 
 
 def barplotfn(data):
     fig = px.bar(data, x='FY', y='REV_CALC', barmode='group', hover_data=['STOCK_ABBREV', 'REV_CALC', 'COUNTRY_TRNS'], color="STOCK_ABBREV")
-    fig.update_layout(width=682, height=330, template="plotly_dark", title = "Revenue(B$) Trend",title_x=0.5,)
+    fig.update_layout(width=530, height=252, template="plotly_dark", title = "Revenue(B$) Trend",title_x=0.5,)
     return fig
 
 def scatplot(data):
     fig = px.scatter(data, x="UNIT_PRICE", y="UNITS", size="REV_CALC", color="STOCK_ABBREV",
                  hover_name="REV_CALC", log_y=True, size_max=60)
-    fig.update_layout(width=455, height=330, template="plotly_dark", title = "Revenue(B$) Trend",title_x=0.5,)
+    fig.update_layout(width=361, height=250, template="plotly_dark", title = "Revenue(B$) Trend",title_x=0.5,)
     return fig
 
 
@@ -118,7 +118,7 @@ app.layout = dhc.Div([
     dbc.Card([
         dbc.CardBody([
                 dbc.Row([
-                dbc.Col([dhc.H3("Market Share Dashboard", className="text-center")], className="css-dash-head")
+                dbc.Col([dhc.H5("Market Share Dashboard", className="text-center")], className="css-dash-head")
             ]),
 
         ])
@@ -130,10 +130,10 @@ app.layout = dhc.Div([
         dbc.CardBody([
 
             dbc.Row([
-                dbc.Col([dhc.H6("Financial Year", className="text-center")], width={'size':3, "offset": 0}, className="css-row-dd-head"),
-                dbc.Col([dhc.H6("Company", className="text-center")], width=3, className="css-row-dd-head"),
-                dbc.Col([dhc.H6("Country", className="text-center")], width=3, className="css-row-dd-head"),
-                dbc.Col([dhc.H6("Region", className="text-center")], width=3, className="css-row-dd-head")
+                dbc.Col([dhc.H6("Financial Year", className="text-center css-font")], width={'size':3, "offset": 0}, className="css-row-dd-head"),
+                dbc.Col([dhc.H6("Company", className="text-center css-font")], width=3, className="css-row-dd-head"),
+                dbc.Col([dhc.H6("Country", className="text-center css-font")], width=3, className="css-row-dd-head"),
+                dbc.Col([dhc.H6("Region", className="text-center css-font")], width=3, className="css-row-dd-head")
             ], align='center'),
 
             dbc.Row([
@@ -181,7 +181,7 @@ app.layout = dhc.Div([
     dhc.Br(),
 
     dbc.Row([
-        dbc.Col(card_bar, width={'size':5, "offset": 0 }),
+        dbc.Col(card_bar, width={'size':4, "offset": 0 }),
         dbc.Col(card_scat,width={'size':3})
     ])
 
