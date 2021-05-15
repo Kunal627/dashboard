@@ -44,34 +44,34 @@ def indplot(data, growth, fy):
         mode = "number+delta",number={"font":{"size":18, "color": "#F9F1E0"}},
         value = revenue,
         title = {"text": "Revenue B$", "font": { "family": "Open Sans" , "size" : 18 , "color":"#1D617A"}},
-        domain = {'row': 0, 'column': 0},
+        domain = {'row': 1, 'column': 1},
         delta = {'reference': ref , "font":{"size":18}, 'relative': True, 'position' : "bottom"}))
 
     fig.add_trace(go.Indicator(
         mode = "number",number={"font":{"size":18, "color": "#F9F1E0"}},
         value = no_cnt,
         title = {'text': "Countries", "font": { "family": "Open Sans" , "size" : 18 , "color":"#1D617A"}},
-        domain = {'row': 0, 'column': 5}
+        domain = {'row': 1, 'column': 4}
         ))
 
     fig.add_trace(go.Indicator(
         mode = "number",number={"font":{"size":18, "color": "#F9F1E0"}},
         value = units,
         title = {'text': "Units Sold", "font": { "family": "Open Sans" , "size" : 18 , "color":"#1D617A"}},
-        domain = {'row': 4, 'column': 0}
+        domain = {'row': 3, 'column': 1}
         ))
 
     fig.add_trace(go.Indicator(
         mode = "number",number={"font":{"size":18, "color": "#F9F1E0"}},
         value = share,
         title = {'text': "Maket Share (%)", "font": { "family": "Open Sans" , "size" : 18 , "color":"#1D617A"}},
-        domain = {'row': 4, 'column': 5}
+        domain = {'row': 3, 'column': 4}
         ))
 
     fig.update_layout(
         grid = {'rows': 6, 'columns': 6, 'pattern': "independent"},
         font=dict(family="Open Sans", size=18, color="#1D617A"),
-        template="plotly_dark", title_text="MDT - KPI(s)", title_x=0.5)
+        template="plotly_dark", title_text="MDT - KPI(s)", title_x=0.5, margin=dict(l=10, r=10, t=60, b=10))
 
     return fig
 
@@ -79,7 +79,7 @@ def indplot(data, growth, fy):
 def bar_plot(data, cntry):
 
     dataset = data[data["COUNTRY_TRNS"].isin(cntry)][["FY","STOCK_ABBREV","REV_BIL","COUNTRY_TRNS"]]
-
+    dataset['FY'] = dataset['FY'].astype(str)
     fig = px.bar(dataset, x='FY', y='REV_BIL', barmode='group',color="STOCK_ABBREV", hover_data={"Country": dataset["COUNTRY_TRNS"], 
         "STOCK_ABBREV": False, "REV_BIL": False, "Revenue (B$)": (':.3f' ,dataset['REV_BIL'])}, 
         labels={"REV_BIL" : "Revenue (in B$)", "FY" : "Financial Year"})
@@ -120,14 +120,15 @@ def mapboxplot(data, fy):
     #dataset = dataset[dataset["FY"] == fy]
 
     fig = px.scatter_mapbox(data, lat="Lat", lon="Long", color="STOCK_ABBREV", size="REV_BIL", 
-        color_continuous_scale=px.colors.sequential.Blackbody, color_discrete_sequence=px.colors.qualitative.Bold, size_max=25, zoom=10,
+        color_continuous_scale=px.colors.sequential.Blackbody, color_discrete_sequence=px.colors.qualitative.Bold, size_max=30, zoom=10,
         hover_data={"Company": dataset["STOCK_ABBREV"], "Lat": False, "Long": False, "FY": False, "ALPHA3ISO": False, 
         "STOCK_ABBREV": False, "REV_BIL": False, "Country": dataset["COUNTRY_TRNS"], "Revenue (B$)": (':.3f' ,dataset['REV_BIL']), 
         "Units Sold": dataset['UNITS']}, animation_frame="FY", opacity=.5)
 
     fig.update_layout(mapbox = {'style': "dark", 'zoom': 1},font=dict(family="Open Sans", size=18, color="#1D617A"),
-        title_text='Global Presence', title_x=0.5,template="plotly_dark", legend_title="Stock Code", legend_font=dict(family="Open Sans", size=12),
-        legend_borderwidth=1, legend_bordercolor="#1D617A", legend_title_font=dict(family="Open Sans", size=14))
+        title_text='Global Presence', title_x=0.5,title_y=.98,template="plotly_dark", legend_title="Stock Code", legend_font=dict(family="Open Sans", size=12),
+        legend_borderwidth=1, legend_bordercolor="#1D617A", legend_title_font=dict(family="Open Sans", size=14),
+        margin=dict(l=0, r=0, t=0, b=0), legend_x=0, legend_bgcolor="rgba(0,0,0,0)")
 
     return fig
 
