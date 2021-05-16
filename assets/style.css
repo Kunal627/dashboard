@@ -174,7 +174,9 @@ body {
 .css-card-drdn-fy  {
     max-height: 35px;
     color:#1D617A;
+    background-color: brown;
 }
+
 
 .css-card-indc{
     height: 369px;
@@ -191,6 +193,11 @@ body {
 .css-card-mapbox {
     height: 478px;
 }
+
+.css-card-treemap{
+    height: 478px; 
+}
+
 .css-indc-fig {
     margin-top: -17px;
     margin-left: -17px;
@@ -219,5 +226,13 @@ body {
     margin-left: -17px;
     margin-right: -17px;
     height: 470px;
-    width: 936px;  
+    width: 951px;  
+}
+
+.css-treemap-fig {
+    margin-top: -17px;
+    margin-left: -17px;
+    margin-right: -17px;
+    height: 470px;
+    width: 951px; 
 }

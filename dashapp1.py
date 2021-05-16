@@ -131,6 +131,22 @@ def mapboxplot(data, fy):
         margin=dict(l=0, r=0, t=0, b=0), legend_x=0, legend_bgcolor="rgba(0,0,0,0)")
 
     return fig
+    
+
+def treemapplot(data, fy):
+    
+    dataset = data[['FY', 'STOCK_ABBREV',  'REV_BIL', 'COUNTRY_TRNS', 'CONTINENT']]
+    dataset = dataset[dataset["FY"] == fy]
+    dataset["world"] = "World"
+    fig = px.treemap(dataset, path=['world', 'CONTINENT', 'COUNTRY_TRNS','STOCK_ABBREV'], values='REV_BIL',
+                  color='REV_BIL', color_continuous_scale=px.colors.qualitative.Pastel1,
+                  hover_data={"STOCK_ABBREV": False, "FY": False, "REV_BIL" : False}
+                  )
+    fig.update_layout(title_text="Revenue Across Geography", title_x=0.5, title_y=.98, font=dict(family="Open Sans", size=18, color="#1D617A"),
+        template="plotly_dark",margin=dict(l=0, r=0, t=0, b=0))
+
+    return fig
+
 
 card_head = dbc.Card([
                 dbc.CardBody([
@@ -192,6 +208,12 @@ card_mapb = dbc.Card([
                 ])
             ], className="css-card-mapbox")
 
+card_tree = dbc.Card([
+                dbc.CardBody([
+                    dcc.Graph(id="id-treemap-chart", config={"displayModeBar": False}, className="css-treemap-fig")
+                ])
+            ], className="css-card-treemap")
+
 app.layout = dhc.Div([
                 dbc.Row([
                     dbc.Col(card_head, width={'size':12, "offset": 0 })
@@ -211,7 +233,8 @@ app.layout = dhc.Div([
 
                 dbc.Row([
                     dbc.Col(card_mapb, width={'size':6, "offset": 0 }),
-                ])
+                    dbc.Col(card_tree, width={'size':6})
+                ], no_gutters=True)
 
             ])
 
@@ -259,10 +282,21 @@ def update_scatplot(cntry):
         Input("id-drdn-fy", "value"),
     ],
 )
-def update_scatplot(fy):
+def update_mapboxplot(fy):
     dataset = pd.read_csv('./data/output/finaldatav02.csv')
     fig_map = mapboxplot(dataset, fy)
     return fig_map
+
+@app.callback(
+    Output("id-treemap-chart", 'figure'),
+    [
+        Input("id-drdn-fy", "value"),
+    ],
+)
+def update_scatplot(fy):
+    dataset = pd.read_csv('./data/output/finaldatav02.csv')
+    fig_tree = treemapplot(dataset, fy)
+    return fig_tree
 
 
 if __name__ == '__main__':
