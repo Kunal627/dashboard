@@ -1,5 +1,9 @@
-* Header misaligned - fixed manually
-* Removed line breaks in data manually
-* Code to fix csv data issues:
-  - Financial year values transformed to yyyy
-  - Removed blank lines
+This is an example of a Sales Dashboard
+
+Used Plotly with Dash
+Graphs:
+  * Mapbox Scatter Plot
+  * Scatter Plot
+  * Indicators
+  * Tree Map
+  * Bar plot
