@@ -141,7 +141,8 @@ def treemapplot(data, fy):
     fig = px.treemap(dataset, path=['world', 'CONTINENT', 'COUNTRY_TRNS','STOCK_ABBREV'], values='REV_BIL',
                   color='REV_BIL', 
                   hover_data={"STOCK_ABBREV": False, "FY": False, "REV_BIL" : False},
-                  color_continuous_scale=px.colors.cmocean.gray
+                  color_continuous_scale=px.colors.colorbrewer.Pastel2,
+                  color_discrete_sequence=px.colors.qualitative.Alphabet
                   )
     fig.update_layout(title_text="Revenue Across Geography", title_x=0.5, title_y=.98, font=dict(family="Open Sans", size=18, color="#1D617A"),
         template="plotly_dark",margin=dict(l=0, r=0, t=0, b=0))
